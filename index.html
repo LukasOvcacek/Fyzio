@@ -7,7 +7,6 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
     --bg: #f5f3ef;
     --surface: #ffffff;
@@ -17,294 +16,51 @@
     --accent: #2d6a4f;
     --accent-light: #e8f4ef;
     --accent-muted: #74b494;
-    --taken: #f0ebe4;
-    --taken-text: #9e9189;
-    --free: #ffffff;
     --radius: 12px;
     --shadow: 0 2px 12px rgba(0,0,0,0.07);
   }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    padding: 0 0 80px;
-  }
-
-  header {
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
-    padding: 20px 20px 16px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
-
-  header h1 {
-    font-size: 18px;
-    font-weight: 600;
-    letter-spacing: -0.3px;
-  }
-
-  header p {
-    font-size: 13px;
-    color: var(--muted);
-    margin-top: 2px;
-  }
-
-  .stats {
-    display: flex;
-    gap: 16px;
-    margin-top: 12px;
-  }
-
-  .stat {
-    font-size: 12px;
-    color: var(--muted);
-  }
-
-  .stat strong {
-    color: var(--text);
-    font-weight: 500;
-  }
-
-  .day-group {
-    margin: 20px 16px 0;
-  }
-
-  .day-label {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--muted);
-    padding: 0 4px;
-    margin-bottom: 8px;
-  }
-
-  .slots {
-    background: var(--surface);
-    border-radius: var(--radius);
-    border: 1px solid var(--border);
-    overflow: hidden;
-    box-shadow: var(--shadow);
-  }
-
-  .slot {
-    display: flex;
-    align-items: center;
-    padding: 14px 16px;
-    border-bottom: 1px solid var(--border);
-    cursor: pointer;
-    transition: background 0.15s;
-    gap: 12px;
-    -webkit-tap-highlight-color: transparent;
-  }
-
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 0 0 80px; }
+  header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 20px 20px 16px; position: sticky; top: 0; z-index: 100; }
+  header h1 { font-size: 18px; font-weight: 600; letter-spacing: -0.3px; }
+  header p { font-size: 13px; color: var(--muted); margin-top: 2px; }
+  .stats { display: flex; gap: 16px; margin-top: 12px; }
+  .stat { font-size: 12px; color: var(--muted); }
+  .stat strong { color: var(--text); font-weight: 500; }
+  .day-group { margin: 20px 16px 0; }
+  .day-label { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 0 4px; margin-bottom: 8px; }
+  .slots { background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); overflow: hidden; box-shadow: var(--shadow); }
+  .slot { display: flex; align-items: center; padding: 14px 16px; border-bottom: 1px solid var(--border); cursor: pointer; transition: background 0.15s; gap: 12px; -webkit-tap-highlight-color: transparent; }
   .slot:last-child { border-bottom: none; }
-
   .slot:active { background: #f7f4f0; }
-
-  .slot.taken { background: var(--taken); cursor: default; }
-
-  .slot-time {
-    font-family: 'DM Mono', monospace;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--muted);
-    min-width: 100px;
-    flex-shrink: 0;
-  }
-
-  .slot-info {
-    flex: 1;
-    min-width: 0;
-  }
-
-  .slot-name {
-    font-size: 15px;
-    font-weight: 500;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .slot-name.empty {
-    color: var(--muted);
-    font-weight: 400;
-    font-size: 14px;
-  }
-
-  .slot-note {
-    font-size: 12px;
-    color: var(--muted);
-    margin-top: 2px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .slot-arrow {
-    color: var(--accent-muted);
-    font-size: 18px;
-    flex-shrink: 0;
-  }
-
+  .slot.taken { background: #f0ebe4; cursor: default; }
+  .slot-time { font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 500; color: var(--muted); min-width: 100px; flex-shrink: 0; }
+  .slot-info { flex: 1; min-width: 0; }
+  .slot-name { font-size: 15px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .slot-name.empty { color: var(--muted); font-weight: 400; font-size: 14px; }
+  .slot-note { font-size: 12px; color: var(--muted); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .slot-arrow { color: var(--accent-muted); font-size: 18px; flex-shrink: 0; }
   .slot.taken .slot-arrow { display: none; }
-
-  .badge-free {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: var(--accent);
-    flex-shrink: 0;
-  }
-
-  .badge-taken {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: var(--border);
-    flex-shrink: 0;
-  }
-
-  /* Modal */
-  .overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.4);
-    z-index: 200;
-    align-items: flex-end;
-    justify-content: center;
-  }
-
+  .badge-free { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+  .badge-taken { width: 8px; height: 8px; border-radius: 50%; background: var(--border); flex-shrink: 0; }
+  .overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 200; align-items: flex-end; justify-content: center; }
   .overlay.open { display: flex; }
-
-  .modal {
-    background: var(--surface);
-    border-radius: 20px 20px 0 0;
-    width: 100%;
-    max-width: 600px;
-    padding: 24px 24px 40px;
-    animation: slideUp 0.25s ease;
-  }
-
-  @keyframes slideUp {
-    from { transform: translateY(40px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-  }
-
-  .modal-handle {
-    width: 40px; height: 4px;
-    background: var(--border);
-    border-radius: 2px;
-    margin: 0 auto 20px;
-  }
-
-  .modal h2 {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 4px;
-  }
-
-  .modal-time {
-    font-family: 'DM Mono', monospace;
-    font-size: 13px;
-    color: var(--muted);
-    margin-bottom: 20px;
-  }
-
+  .modal { background: var(--surface); border-radius: 20px 20px 0 0; width: 100%; max-width: 600px; padding: 24px 24px 40px; animation: slideUp 0.25s ease; }
+  @keyframes slideUp { from { transform: translateY(40px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+  .modal-handle { width: 40px; height: 4px; background: var(--border); border-radius: 2px; margin: 0 auto 20px; }
+  .modal h2 { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+  .modal-time { font-family: 'DM Mono', monospace; font-size: 13px; color: var(--muted); margin-bottom: 20px; }
   .field { margin-bottom: 16px; }
-
-  .field label {
-    display: block;
-    font-size: 12px;
-    font-weight: 500;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    margin-bottom: 6px;
-  }
-
-  .field input {
-    width: 100%;
-    padding: 12px 14px;
-    border: 1.5px solid var(--border);
-    border-radius: 10px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 16px;
-    background: var(--bg);
-    color: var(--text);
-    outline: none;
-    transition: border-color 0.15s;
-  }
-
+  .field label { display: block; font-size: 12px; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+  .field input { width: 100%; padding: 12px 14px; border: 1.5px solid var(--border); border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 16px; background: var(--bg); color: var(--text); outline: none; transition: border-color 0.15s; }
   .field input:focus { border-color: var(--accent); }
-
-  .btn-row {
-    display: flex;
-    gap: 10px;
-    margin-top: 20px;
-  }
-
-  .btn-save {
-    flex: 1;
-    padding: 14px;
-    background: var(--accent);
-    color: white;
-    border: none;
-    border-radius: 12px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 16px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: opacity 0.15s;
-  }
-
+  .btn-row { display: flex; gap: 10px; margin-top: 20px; }
+  .btn-save { flex: 1; padding: 14px; background: var(--accent); color: white; border: none; border-radius: 12px; font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 500; cursor: pointer; transition: opacity 0.15s; }
   .btn-save:active { opacity: 0.8; }
-
-  .btn-cancel {
-    padding: 14px 20px;
-    background: transparent;
-    color: var(--muted);
-    border: 1.5px solid var(--border);
-    border-radius: 12px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 16px;
-    cursor: pointer;
-  }
-
-  .loading {
-    text-align: center;
-    padding: 60px 20px;
-    color: var(--muted);
-    font-size: 15px;
-  }
-
-  .toast {
-    position: fixed;
-    bottom: 24px;
-    left: 50%;
-    transform: translateX(-50%) translateY(80px);
-    background: var(--text);
-    color: white;
-    padding: 12px 20px;
-    border-radius: 100px;
-    font-size: 14px;
-    font-weight: 500;
-    z-index: 300;
-    transition: transform 0.3s ease;
-    white-space: nowrap;
-  }
-
+  .btn-cancel { padding: 14px 20px; background: transparent; color: var(--muted); border: 1.5px solid var(--border); border-radius: 12px; font-family: 'DM Sans', sans-serif; font-size: 16px; cursor: pointer; }
+  .loading { text-align: center; padding: 60px 20px; color: var(--muted); font-size: 15px; }
+  .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px); background: var(--text); color: white; padding: 12px 20px; border-radius: 100px; font-size: 14px; font-weight: 500; z-index: 300; transition: transform 0.3s ease; white-space: nowrap; }
   .toast.show { transform: translateX(-50%) translateY(0); }
-
-  .saving-indicator {
-    font-size: 13px;
-    color: var(--muted);
-    text-align: center;
-    margin-top: 8px;
-  }
+  .saving-indicator { font-size: 13px; color: var(--muted); text-align: center; margin-top: 8px; }
 </style>
 </head>
 <body>
@@ -343,10 +99,17 @@
 
 <div class="toast" id="toast"></div>
 
-<script>
-const BIN_ID = '6a121fc66610dd3ae894c70a';
-const API_KEY = '$2a$10$d8bs8aLklPN7rap82UVMvuNXzn5bvCPyWtrfZTV2s.Ck4dPPrhQWK';
-const BASE_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getDatabase, ref, get, set, onValue } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+const firebaseConfig = {
+  databaseURL: "https://fyzio-defcc-default-rtdb.europe-west1.firebasedatabase.app"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+const dbRef = ref(db, 'rows');
 
 const INITIAL_ROWS = [
   {datum:"neděle 12. 1. 2025",cas:"14:00 - 14:20",jmeno:"Hanušová Kateřina",poznamka:"první kontrola"},
@@ -415,32 +178,26 @@ let rows = [];
 let activeIndex = null;
 
 async function loadData() {
-  try {
-    const res = await fetch(`${BASE_URL}/latest`, {
-      headers: { 'X-Master-Key': API_KEY }
-    });
-    const json = await res.json();
-    if (json.record && json.record.rows && json.record.rows.length > 0) {
-      rows = json.record.rows;
-    } else {
-      rows = INITIAL_ROWS;
-      await saveData();
-    }
-  } catch(e) {
+  const snapshot = await get(dbRef);
+  if (snapshot.exists() && snapshot.val() && snapshot.val().length > 0) {
+    rows = snapshot.val();
+  } else {
     rows = INITIAL_ROWS;
+    await set(dbRef, rows);
   }
   render();
+
+  // Live updates
+  onValue(dbRef, (snap) => {
+    if (snap.exists()) {
+      rows = snap.val();
+      render();
+    }
+  });
 }
 
 async function saveData() {
-  await fetch(BASE_URL, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-      'X-Master-Key': API_KEY
-    },
-    body: JSON.stringify({ rows })
-  });
+  await set(dbRef, rows);
 }
 
 function render() {
@@ -458,12 +215,10 @@ function render() {
 
   let html = '';
   for (const [datum, slots] of Object.entries(byDay)) {
-    html += `<div class="day-group">
-      <div class="day-label">${datum}</div>
-      <div class="slots">`;
+    html += `<div class="day-group"><div class="day-label">${datum}</div><div class="slots">`;
     slots.forEach(slot => {
       const taken = !!slot.jmeno;
-      html += `<div class="slot ${taken ? 'taken' : ''}" ${!taken ? `onclick="openModal(${slot.idx})"` : ''}>
+      html += `<div class="slot ${taken ? 'taken' : ''}" ${!taken ? `onclick="window._openModal(${slot.idx})"` : ''}>
         <div class="${taken ? 'badge-taken' : 'badge-free'}"></div>
         <div class="slot-time">${slot.cas}</div>
         <div class="slot-info">
@@ -478,7 +233,7 @@ function render() {
   app.innerHTML = html;
 }
 
-function openModal(idx) {
+window._openModal = function(idx) {
   activeIndex = idx;
   const row = rows[idx];
   document.getElementById('modal-datum').textContent = row.datum;
@@ -490,29 +245,21 @@ function openModal(idx) {
   setTimeout(() => document.getElementById('input-jmeno').focus(), 300);
 }
 
-function closeModal() {
+document.getElementById('btn-cancel').addEventListener('click', () => {
   document.getElementById('overlay').classList.remove('open');
   activeIndex = null;
-}
+});
 
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2500);
-}
-
-document.getElementById('btn-cancel').addEventListener('click', closeModal);
 document.getElementById('overlay').addEventListener('click', e => {
-  if (e.target === document.getElementById('overlay')) closeModal();
+  if (e.target === document.getElementById('overlay')) {
+    document.getElementById('overlay').classList.remove('open');
+    activeIndex = null;
+  }
 });
 
 document.getElementById('btn-save').addEventListener('click', async () => {
   const jmeno = document.getElementById('input-jmeno').value.trim();
-  if (!jmeno) {
-    document.getElementById('input-jmeno').focus();
-    return;
-  }
+  if (!jmeno) { document.getElementById('input-jmeno').focus(); return; }
   const poznamka = document.getElementById('input-poznamka').value.trim();
   const ind = document.getElementById('saving-indicator');
   ind.textContent = 'Ukládám…';
@@ -523,9 +270,12 @@ document.getElementById('btn-save').addEventListener('click', async () => {
 
   try {
     await saveData();
-    closeModal();
-    render();
-    showToast('Zapsáno! ✓');
+    document.getElementById('overlay').classList.remove('open');
+    activeIndex = null;
+    const t = document.getElementById('toast');
+    t.textContent = 'Zapsáno! ✓';
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2500);
   } catch(e) {
     ind.textContent = 'Chyba při ukládání, zkuste znovu.';
     document.getElementById('btn-save').disabled = false;
